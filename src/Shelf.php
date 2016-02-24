@@ -34,7 +34,7 @@ abstract class Shelf {
      * @return mixed
      */
     public function getCollection() {
-        return $this->items();
+        return $this->items;
     }
 
     /**
