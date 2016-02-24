@@ -1,0 +1,15 @@
+{
+    "name": "fuelingtheweb/shelving",
+    "description": "Easy setup for using a repository pattern",
+    "authors": [
+        {
+            "name": "Nathan Morgan",
+            "email": "nathan@fuelingtheweb.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Fuelingtheweb\\Shelving\\": "src/"
+        }
+    },
+}
