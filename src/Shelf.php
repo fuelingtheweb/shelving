@@ -17,6 +17,7 @@ abstract class Shelf {
     protected $methods = [
         'Illuminate\Database\Eloquent\Builder' => 'query',
         'Illuminate\Database\Eloquent\Collection' => 'collection',
+        'Illuminate\Support\Collection' => 'collection',
         'Illuminate\Database\Eloquent\Model' => 'instance'
     ];
 
@@ -41,7 +42,11 @@ abstract class Shelf {
      * @return mixed
      */
     protected function query() {
-        return $this->query ?: $this->newQuery();
+        if (is_null($this->query)) {
+            $this->newQuery();
+        }
+
+        return $this->query;
     }
 
     /**
@@ -121,7 +126,7 @@ abstract class Shelf {
             case 'query':
                 break;
             case 'collection':
-                $this->all = $this->query;
+                $this->items = $this->query;
                 $this->newQuery();
                 break;
             case 'instance':
