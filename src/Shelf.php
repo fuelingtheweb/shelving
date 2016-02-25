@@ -64,11 +64,11 @@ abstract class Shelf {
      * @return string
      */
     protected function getModelClass() {
-        if (!is_null($this->model)) {
-            return $this->model;
+        if (is_null($this->model)) {
+            throw new \Exception('The model property must be a string name of your model class.');
         }
 
-        return 'App\\Eloquent\\' . class_basename($this);
+        return $this->model;
     }
 
     /**
