@@ -38,6 +38,13 @@ abstract class Shelf {
     }
 
     /**
+     * Call all method and return collection of items
+     */
+    public function getAll() {
+        return $this->all()->getCollection();
+    }
+
+    /**
      * Continue chaining the existing query or start a new query
      * @return mixed
      */
