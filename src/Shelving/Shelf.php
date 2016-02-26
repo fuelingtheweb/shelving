@@ -96,7 +96,8 @@ abstract class Shelf {
             return $this->classmap = config('shelving.classmap');
         }
 
-        return $this->classmap = require_once(__DIR__ . '/../config/shelving.php');
+        $config = require_once(__DIR__ . '/../config/shelving.php');
+        return $this->classmap = $config['classmap'];
     }
 
     /**
