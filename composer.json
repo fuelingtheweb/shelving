@@ -9,11 +9,12 @@
     ],
     "autoload": {
         "psr-4": {
-            "Fuelingtheweb\\Shelving\\": "src/"
+            "Fuelingtheweb\\Shelving\\": "src/Shelving/"
         }
     },
     "require": {
-        "php": ">=5.5.9"
+        "php": ">=5.5.9",
+        "illuminate/support": "5.2.*"
     },
     "require-dev": {
         "phpunit/phpunit": "4.8.*"

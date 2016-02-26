@@ -14,12 +14,8 @@ abstract class Shelf {
     // Collection of model instances
     protected $items;
 
-    protected $methods = [
-        'Illuminate\Database\Eloquent\Builder' => 'query',
-        'Illuminate\Database\Eloquent\Collection' => 'collection',
-        'Illuminate\Support\Collection' => 'collection',
-        'Illuminate\Database\Eloquent\Model' => 'instance'
-    ];
+    // Classmap for query results
+    protected $classmap;
 
     /**
      * Get the individual instance
@@ -89,13 +85,30 @@ abstract class Shelf {
     }
 
     /**
+     * Get classmap property or config
+     */
+    public function getClassmap() {
+        if (isset($this->classmap) && is_array($this->classmap)) {
+            return $this->classmap;
+        }
+
+        if (function_exists('config') && is_array(config('shelving.classmap'))) {
+            return $this->classmap = config('shelving.classmap');
+        }
+
+        return $this->classmap = require_once(__DIR__ . '/../config/shelving.php');
+    }
+
+    /**
      * Get the type name of the query result class
      * @param  string
      * @return string
      */
     protected function getQueryResultType($class) {
-        if (array_key_exists($class, $this->methods)) {
-            return $this->methods[$class];
+        $classmap = $this->getClassmap();
+
+        if (array_key_exists($class, $classmap)) {
+            return $classmap[$class];
         }
 
         return 'value';

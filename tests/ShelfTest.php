@@ -129,4 +129,13 @@ class ShelfTest extends PHPUnit_Framework_TestCase
 
         $this->assertEquals('Foo', $result);
     }
+
+    /**
+     * getClassmap method should return classmap array from config file
+     */
+    public function testGetClassmap() {
+        $classmap = $this->invokeMethod('getClassmap');
+
+        $this->assertTrue(is_array($classmap));
+    }
 }
