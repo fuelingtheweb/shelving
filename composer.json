@@ -13,8 +13,7 @@
         }
     },
     "require": {
-        "php": ">=5.5.9",
-        "illuminate/support": ">=5.2.21"
+        "php": ">=5.5.9"
     },
     "require-dev": {
         "phpunit/phpunit": "4.8.*"
