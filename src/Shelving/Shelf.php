@@ -19,7 +19,8 @@ abstract class Shelf {
 
     // Potential traits to use with model
     protected $traits = [
-        'Owner'
+        'Owner',
+        'Columns'
     ];
 
     /**
