@@ -69,8 +69,10 @@ abstract class Shelf {
             $method = 'add' . $trait . 'OnInsert';
             if (!method_exists($this, $method)) continue;
 
-            $this->$method();
+            $instance = $this->$method($instance);
         }
+
+        return $instance;
     }
 
     /**
