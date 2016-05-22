@@ -53,7 +53,7 @@ abstract class Shelf {
      */
     public static function create(array $attributes = []) {
         $instance = new static($attributes);
-        $instance = $this->triggerTraitsOnInsert($instance);
+        $instance = $instance->triggerTraitsOnInsert($instance);
         $instance->save();
 
         return $instance;
