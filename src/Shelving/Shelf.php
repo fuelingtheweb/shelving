@@ -17,6 +17,11 @@ abstract class Shelf {
     // Classmap for query results
     protected $classmap;
 
+    // Potential traits to use with model
+    protected $traits = [
+        'Owner'
+    ];
+
     /**
      * Get the individual instance
      * @return mixed
@@ -38,6 +43,34 @@ abstract class Shelf {
      */
     public function getAll() {
         return $this->all()->getCollection();
+    }
+
+    /**
+     * Save a new model and return the instance.
+     *
+     * @param  array  $attributes
+     * @return static
+     */
+    public static function create(array $attributes = []) {
+        $instance = new static($attributes);
+        $instance = $this->triggerTraitsOnInsert($instance);
+        $instance->save();
+
+        return $instance;
+    }
+
+    /**
+     * Trigger traits on insert
+     * @param  $instance
+     * @return $instance
+     */
+    protected function triggerTraitsOnInsert($instance) {
+        foreach ($this->traits as $trait) {
+            $method = 'add' . $trait . 'OnInsert';
+            if (!method_exists($this, $method)) continue;
+
+            $this->$method();
+        }
     }
 
     /**
