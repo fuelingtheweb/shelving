@@ -14,7 +14,7 @@ trait OwnerTrait {
      */
     protected function addOwnerOnInsert($instance) {
         if (!is_null($this->ownerId)) {
-            $instance->owner_id = $this->ownerId;
+            $instance->setAttribute('owner_id', $this->ownerId);
         }
 
         return $instance;

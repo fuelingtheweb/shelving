@@ -52,11 +52,12 @@ abstract class Shelf {
      * @return static
      */
     public static function create(array $attributes = []) {
-        $instance = new static($attributes);
-        $instance = $instance->triggerTraitsOnInsert($instance);
+        $instance = $this->query()->create($attributes);
+        $instance = $this->triggerTraitsOnInsert($instance);
         $instance->save();
+        $this->instance = $instance;
 
-        return $instance;
+        return $this;
     }
 
     /**
